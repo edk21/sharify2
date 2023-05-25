@@ -41,7 +41,7 @@ const CreateBlog = () => {
         try {
           const imageUrl = await uploadImage()
           
-          const res = await fetch(`https://sharify2.vercel.app/blog`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`, {
             headers: {
                'Content-Type': 'application/json',
                'Authorization': `Bearer ${session?.user?.accessToken}` 

@@ -19,7 +19,7 @@ const BlogCard = ({ blog: { title, desc, imageUrl, likes, authorId, _id } }) => 
 
   const handleLike = async () => {
     try {
-      const res = await fetch(`https://sharify2.vercel.app/blog/${_id}/like`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog/${_id}/like`, {
         headers: {
           'Authorization': `Bearer ${session?.user?.accessToken}`
         },
