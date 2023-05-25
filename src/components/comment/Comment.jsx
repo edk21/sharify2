@@ -11,7 +11,7 @@ const Comment = ({comment, setComments}) => {
 
   const handleDeleteComment = async() => {
     try {
-      await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app/comment/${comment?._id}`, {
+      await fetch(`https://sharify2.vercel.app//comment/${comment?._id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         },
