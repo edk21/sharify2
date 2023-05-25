@@ -3,7 +3,6 @@ import {useSession} from 'next-auth/react'
 import {format} from 'timeago.js'
 import person from '../../../public/person.jpg'
 import {BsTrash} from 'react-icons/bs'
-import classes from './comment.module.css'
 import Image from 'next/image'
 
 const Comment = ({comment, setComments}) => {
@@ -28,19 +27,25 @@ const Comment = ({comment, setComments}) => {
   }
 
   return (
-    <div className={classes.container}>
-      <div className={classes.wrapper}>
-        <div className={classes.left}>
-             <Image src={person} width='45' height='45' alt="" />
-             <div className={classes.userData}>
+    <div className="w-full h-full">
+      <div className="h-full my-0 mx-auto flex justify-between items-center w-5/6">
+        <div className="flex gap-5">
+            <Image
+              src={person}
+              width='45'
+              height='45'
+              alt=""
+              className='w-10 h-10 object-cover rounded-full'
+            />
+             <div className="flex flex-col items-start gap-1">
                <h4>{comment?.authorId?.username}</h4>
-               <span className={classes.timeago}>{format(comment?.createdAt)}</span>
+               <span className="text-base text-slate-400">{format(comment?.createdAt)}</span>
              </div>
              <span>{comment?.text}</span>
         </div>
-        <div className={classes.right}>
+        <div>
            {session?.user?._id === comment?.authorId?._id && (
-             <BsTrash className={classes.trashIcon}  onClick={handleDeleteComment} />
+             <BsTrash className="cursor-pointer text-red-500"  onClick={handleDeleteComment} />
            )}
         </div>
       </div>

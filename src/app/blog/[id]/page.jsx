@@ -129,7 +129,13 @@ const BlogDetails = (ctx) => {
     return (
         <div className={classes.container}>
             <div className={classes.wrapper}>
-                <Image src={blogDetails?.imageUrl} width='750' height='650' />
+                <Image
+                    src={blogDetails?.imageUrl}
+                    width='750'
+                    height='650'
+                    alt=""
+                    className='rounded-md'
+                />
                 <div className={classes.row}>
                     <h3 className={classes.title}>{blogDetails?.title}</h3>
                     {

@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import classes from './blogCard.module.css'
 import { useSession } from 'next-auth/react'
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
 
@@ -43,21 +42,27 @@ const BlogCard = ({ blog: { title, desc, imageUrl, likes, authorId, _id } }) => 
   }
 
   return (
-    <div className={classes.container}>
-      <div className={classes.wrapper}>
-        <Link className={classes.imgContainer} href={`/blog/${_id}`}>
-          <Image src={imageUrl} width="350" height="350" alt="" />
+    <div className="w-3/12 h-{540px} shadow-sm transition rounded-xl hover:shadow-lg">
+      <div className="p-5 w-full h-full flex flex-col">
+        <Link href={`/blog/${_id}`}>
+          <Image
+            src={imageUrl}
+            width="350"
+            height="350"
+            alt=""
+            className='object-cover w-full my-0 mx-auto rounded-3xl hover:scale-105 transition ease-in-out duration-200'
+          />
         </Link>
-        <div className={classes.blogData}>
-          <div className={classes.left}>
-            <h3>{title}</h3>
-            <p>{desc}</p>
-            <span>Created By: <span>1th of January</span></span>
+        <div className="ml-3 flex justify-between items-center">
+          <div>
+            <h3 className='text-lg font-bold mt-6 mb-5'>{title}</h3>
+            <p className='text-slate-500'>{desc}</p>
+            <span className='mt-8 flex items-center gap-2 text-base'>Created By: <span className='text-slate-600'>1th of January</span></span>
           </div>
-          <div className={classes.right}>
+          <div className="cursor-pointer flex items-center gap-2 text-lg">
             {blogLikes} {" "} {isLiked
-              ? (<AiFillLike onClick={handleLike} size={20} />)
-              : (<AiOutlineLike onClick={handleLike} size={20} />)}
+              ? (<AiFillLike onClick={handleLike} size={18} />)
+              : (<AiOutlineLike onClick={handleLike} size={18} />)}
           </div>
         </div>
       </div>
