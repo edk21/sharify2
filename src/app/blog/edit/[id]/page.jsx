@@ -19,7 +19,7 @@ const Edit = (ctx) => {
 
     useEffect(() => {
         async function fetchBlog() {
-            const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app//blog/${ctx.params.id}`)
+            const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app/blog/${ctx.params.id}`)
 
             const blog = await res.json()
 
@@ -28,7 +28,7 @@ const Edit = (ctx) => {
             setCategory(blog.category)
         }
         fetchBlog()
-    }, [])
+    }, [ctx])
 
     if (status === 'loading') {
         return <p>Loading...</p>

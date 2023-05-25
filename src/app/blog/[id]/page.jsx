@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { format } from 'timeago.js'
 import { useRouter } from 'next/navigation'
 import Comment from '@/components/comment/Comment'
-import person from '../../../../public/person.jpg'
 
 const BlogDetails = (ctx) => {
     const [blogDetails, setBlogDetails] = useState("")
@@ -32,7 +31,7 @@ const BlogDetails = (ctx) => {
         setComments(comments)
       }
       fetchComments()
-    }, [])
+    }, [ctx])
 
 
     useEffect(() => {
@@ -45,14 +44,14 @@ const BlogDetails = (ctx) => {
             setBlogLikes(blog?.likes?.length || 0)
         }
         session && fetchBlog()
-    }, [session])
+    }, [session, ctx])
 
     const handleDelete = async () => {
         try {
             const confirmModal = confirm("Are you sure you want to delete your blog?")
 
             if (confirmModal) {
-                const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app//blog/${ctx.params.id}`, {
+                const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app/blog/${ctx.params.id}`, {
                     headers: {
                         'Authorization': `Bearer ${session?.user?.accessToken}`
                     },
@@ -70,7 +69,7 @@ const BlogDetails = (ctx) => {
 
     const handleLike = async () => {
         try {
-            const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app//blog/${ctx.params.id}/like`, {
+            const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app/blog/${ctx.params.id}/like`, {
                 headers: {
                     'Authorization': `Bearer ${session?.user?.accessToken}`
                 },
@@ -173,7 +172,7 @@ const BlogDetails = (ctx) => {
                 </div>
                 <div className={classes.commentSection}>
                     <div className={classes.commentInput}>
-                        <Image src={person} width='45' height='45' alt="" />
+                        <Image src="/person.jpg" width='45' height='45' alt="" />
                         <input value={commentText} type="text" placeholder='Type message...' onChange={(e) => setCommentText(e.target.value)}/>
                         <button onClick={handleComment}>Post</button>
                     </div>
