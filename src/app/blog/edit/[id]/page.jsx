@@ -63,7 +63,7 @@ const Edit = (ctx) => {
                 body.imageUrl = imageUrl
             }
             
-            const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app//blog/${ctx.params.id}`, {
+            const res = await fetch(`https://sharify-jw0b7axnn-edk21.vercel.app/blog/${ctx.params.id}`, {
                 headers: {
                     "Content-Type": 'application/json',
                     "Authorization": `Bearer ${session?.user?.accessToken}`
